@@ -1,7 +1,9 @@
 import React from 'react'
 
+import './Moves.css'
+
 export function Moves({ history, setMove }) {
-  return (<ol>{history.map((_, move) => {
+  return (<ol className="moves">{history.map((_, move) => {
     return (
       <li key={move}>
         <button onClick={() => setMove(move)}>{getDescription(move)}</button>
