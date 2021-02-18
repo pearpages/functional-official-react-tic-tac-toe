@@ -4,7 +4,7 @@ import './Game.css'
 import { useGame } from './useGame'
 import { Board } from './Board'
 import { Moves } from './Moves'
-import { getStatusMessage, calculateWinner } from './helpers'
+import { getStatusMessage, calculateWinner } from './Game.helpers'
 
 export function Game() {
   const { squares, handleClick, nextPlayer, history, setMove } = useGame()
