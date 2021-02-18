@@ -19,12 +19,26 @@ export function calculateWinner(squares) {
     [0, 4, 8],
     [2, 4, 6],
   ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
+
+  lines.forEach((line) => {
+    const [a, b, c] = line;
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return {
+        winner: squares[a],
+        line
+      }
+    }    
+  })
+    
+  if (squares.every((value) => !!value)) {
+    return {
+      winner: 'DRAW',
+      line: null
     }
   }
-  // TODO: DRAW, when there is no winner but all the squares are filled with a value
-  return null;
+
+  return {
+    winner: null,
+    line: null
+  };
 }

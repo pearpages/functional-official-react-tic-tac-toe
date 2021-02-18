@@ -21,7 +21,6 @@ In the project directory, you can run:
 - Reinstall with npm and not yarn
 - Deploy to github
 - Connect it with codesand.io
-- Update the winner function to display  a DRAW
 - Create test examples
 - Highlight result
 - Refactor css per component
