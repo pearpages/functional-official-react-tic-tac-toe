@@ -1,24 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 
+import './Game.css'
+import { useGame } from './useGame'
 import { Board } from './Board'
+import { Moves } from './Moves'
 import { getStatusMessage, calculateWinner } from './helpers'
 
-const X = 'X'
-const O = 'O'
-
 export function Game() {
-  const [move, setMove] = useState(undefined)
-  const [history, setHistory] = useState([{ squares: Array(9).fill(null), isNext: X }])
-
-  const currentMove = move !== undefined ? move : (history.length - 1)
-  const {squares, isNext} = history[currentMove]
-
-  const handleClick = (square) => () => {
-    const newSquares = squares.slice()
-    newSquares[square] = isNext
-    setHistory(history.slice(0, currentMove + 1).concat({squares: newSquares, isNext: (isNext === X ? O : X)}))
-    setMove(undefined)
-  }
+  const { squares, handleClick, nextPlayer, history, setMove } = useGame()
 
   const winner = calculateWinner(squares)
 
@@ -31,22 +20,9 @@ export function Game() {
         }} />
       </div>
       <div className="game-info">
-        <div className="status">{getStatusMessage({nextPlayer: isNext, winner})}</div>
-        <ol>{getMoves(history, setMove)}</ol>
+        <div className="status">{getStatusMessage({nextPlayer, winner})}</div>
+        <Moves history={history} setMove={setMove} />
       </div>
     </div>
   );
-}
-
-function getMoves(history, jumpTo) {
-  return history.map((_, move) => {
-    const desc = move ?
-      'Go to move #' + move :
-      'Go to game start';
-    return (
-      <li key={move}>
-        <button onClick={() => jumpTo(move)}>{desc}</button>
-      </li>
-    );
-  });
 }
