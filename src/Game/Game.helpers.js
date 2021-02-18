@@ -20,15 +20,18 @@ export function calculateWinner(squares) {
     [2, 4, 6],
   ];
 
-  lines.forEach((line) => {
+  let result
+  const hasWinner = lines.some((line) => {
     const [a, b, c] = line;
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return {
-        winner: squares[a],
-        line
-      }
-    }    
+    result = {
+      winner: squares[a],
+      line: [a, b, c]
+    }
+    return squares[a] && squares[a] === squares[b] && squares[a] === squares[c]
   })
+  if (hasWinner) {
+    return result
+  }
     
   if (squares.every((value) => !!value)) {
     return {
