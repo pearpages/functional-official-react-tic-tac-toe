@@ -2,9 +2,12 @@ import React from 'react'
 
 import { Square } from './Square'
 
-export function Board({config: {squares, handleClick}}) {
+export function Board({ config: { squares, handleClick } }) {
 
-  const renderSquareWithValueAndClickHandler = (square) => Square.renderSquare(squares[square], handleClick(square))
+  const renderSquareWithValueAndClickHandler = (square) => Square.renderSquare({
+    value: squares[square],
+    clickHandler: handleClick(square)
+  })
 
   return (
     <div>

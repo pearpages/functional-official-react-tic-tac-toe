@@ -8,7 +8,7 @@ export function Square({onClick, value}) {
   );
 }
 
-Square.renderSquare = (value, clickHandler) => {
+Square.renderSquare = ({value, clickHandler}) => {
   return <Square 
     value={value} 
     onClick={clickHandler}
