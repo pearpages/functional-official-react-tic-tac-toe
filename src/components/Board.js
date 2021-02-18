@@ -20,7 +20,7 @@ export function Board() {
 
   return (
     <div>
-      <div className="status">{`Next player: ${isNext}`}</div>
+      <div className="status">{getStatusMessage(isNext)}</div>
       <div className="board-row">
         {renderSquareWithValueAndClickHandler(0)}
         {renderSquareWithValueAndClickHandler(1)}
@@ -38,6 +38,10 @@ export function Board() {
       </div>
     </div>
   );
+}
+
+function getStatusMessage(isNext) {
+  return `Next player: ${isNext}`
 }
 
 function renderSquare(value, clickHandler) {
