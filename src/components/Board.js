@@ -2,22 +2,25 @@ import React, { useState } from 'react'
 
 import { Square } from './Square'
 
-const status = 'Next player: X';
+const X = 'X'
+const O = 'O'
 
 export function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null))
+  const [isNext, setIsNext] = useState(X)
 
-  const handleClick = (i) => () => {
+  const handleClick = (square) => () => {
     const newSquares = squares.slice()
-    newSquares[i] = 'X'
+    newSquares[square] = isNext
+    setIsNext((isNext === X ? O : X))
     setSquares(newSquares)
   }
 
-  const renderSquareWithValueAndClickHandler = (i) => renderSquare(squares[i], handleClick(i))
+  const renderSquareWithValueAndClickHandler = (square) => renderSquare(squares[square], handleClick(square))
 
   return (
     <div>
-      <div className="status">{status}</div>
+      <div className="status">{`Next player: ${isNext}`}</div>
       <div className="board-row">
         {renderSquareWithValueAndClickHandler(0)}
         {renderSquareWithValueAndClickHandler(1)}
