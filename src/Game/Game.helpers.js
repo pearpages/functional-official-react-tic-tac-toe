@@ -32,8 +32,9 @@ export function calculateWinner(squares) {
   if (hasWinner) {
     return result
   }
-    
-  if (squares.every((value) => !!value)) {
+  
+  const hasDraw = squares.every((value) => !!value)
+  if (hasDraw) {
     return {
       winner: 'DRAW',
       line: null
