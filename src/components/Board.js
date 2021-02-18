@@ -1,34 +1,45 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Square } from './Square'
 
-export class Board extends React.Component {
-  renderSquare(i) {
-    return <Square />;
+const status = 'Next player: X';
+
+export function Board() {
+  const [squares, setSquares] = useState(Array(9).fill(null))
+
+  const handleClick = (i) => () => {
+    const newSquares = squares.slice()
+    newSquares[i] = 'X'
+    setSquares(newSquares)
   }
 
-  render() {
-    const status = 'Next player: X';
+  const renderSquareWithValueAndClickHandler = (i) => renderSquare(squares[i], handleClick(i))
 
-    return (
-      <div>
-        <div className="status">{status}</div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
+  return (
+    <div>
+      <div className="status">{status}</div>
+      <div className="board-row">
+        {renderSquareWithValueAndClickHandler(0)}
+        {renderSquareWithValueAndClickHandler(1)}
+        {renderSquareWithValueAndClickHandler(2)}
       </div>
-    );
-  }
+      <div className="board-row">
+        {renderSquareWithValueAndClickHandler(3)}
+        {renderSquareWithValueAndClickHandler(4)}
+        {renderSquareWithValueAndClickHandler(5)}
+      </div>
+      <div className="board-row">
+        {renderSquareWithValueAndClickHandler(6)}
+        {renderSquareWithValueAndClickHandler(7)}
+        {renderSquareWithValueAndClickHandler(8)}
+      </div>
+    </div>
+  );
+}
+
+function renderSquare(value, clickHandler) {
+  return <Square 
+    value={value} 
+    onClick={clickHandler}
+  />;
 }
