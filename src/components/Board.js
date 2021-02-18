@@ -9,15 +9,18 @@ export function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null))
   const [isNext, setIsNext] = useState(X)
 
-  const handleClick = (square) => () => {
-    const newSquares = squares.slice()
-    newSquares[square] = isNext
-    setIsNext((isNext === X ? O : X))
-    setSquares(newSquares)
-  }
+  const winner = calculateWinner(squares)
+
+  const handleClick = winner 
+    ? () => undefined
+    : (square) => () => {
+      const newSquares = squares.slice()
+      newSquares[square] = isNext
+      setIsNext((isNext === X ? O : X))
+      setSquares(newSquares)
+    }
 
   const renderSquareWithValueAndClickHandler = (square) => renderSquare(squares[square], handleClick(square))
-  const winner = calculateWinner(squares)
 
   return (
     <div>
