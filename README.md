@@ -22,8 +22,6 @@ In the project directory, you can run:
 - Deploy to github
 - Connect it with codesand.io
 - Create test examples
-- Highlight result
-- Refactor css per component
 
 ---
 

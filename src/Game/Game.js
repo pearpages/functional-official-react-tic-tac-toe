@@ -9,7 +9,7 @@ import { getStatusMessage, calculateWinner } from './Game.helpers'
 export function Game() {
   const { squares, handleClick, nextPlayer, history, setMove } = useGame()
 
-  const { winner } = calculateWinner(squares)
+  const { winner, line } = calculateWinner(squares)
 
   return (
     <div className="game">
@@ -17,6 +17,7 @@ export function Game() {
         <Board config={{
           squares,
           handleClick: winner ? () => undefined : handleClick,
+          line
         }} />
       </div>
       <div className="game-info">

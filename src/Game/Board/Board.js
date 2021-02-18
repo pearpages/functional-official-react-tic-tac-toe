@@ -3,11 +3,14 @@ import React from 'react'
 import './Board.css'
 import { Square } from './Square'
 
-export function Board({ config: { squares, handleClick } }) {
+export function Board({ config: { squares, handleClick, line } }) {
+
+  const isHighlighted = (square) => (line || []).includes(square)
 
   const renderSquareWithValueAndClickHandler = (square) => Square.renderSquare({
     value: squares[square],
-    clickHandler: handleClick(square)
+    clickHandler: handleClick(square),
+    isHighlighted: isHighlighted(square)
   })
 
   return (
