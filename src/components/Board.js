@@ -17,10 +17,11 @@ export function Board() {
   }
 
   const renderSquareWithValueAndClickHandler = (square) => renderSquare(squares[square], handleClick(square))
+  const winner = calculateWinner(squares)
 
   return (
     <div>
-      <div className="status">{getStatusMessage(isNext)}</div>
+      <div className="status">{getStatusMessage({nextPlayer: isNext, winner})}</div>
       <div className="board-row">
         {renderSquareWithValueAndClickHandler(0)}
         {renderSquareWithValueAndClickHandler(1)}
@@ -40,8 +41,14 @@ export function Board() {
   );
 }
 
-function getStatusMessage(isNext) {
-  return `Next player: ${isNext}`
+function getStatusMessage({nextPlayer, winner}) {
+  return (winner) 
+    ? `Winner: ${winner}`
+    : getNextPlayerMessage(nextPlayer)
+}
+
+function getNextPlayerMessage(nextPlayer) {
+  return `Next player: ${nextPlayer}`
 }
 
 function renderSquare(value, clickHandler) {
@@ -49,4 +56,24 @@ function renderSquare(value, clickHandler) {
     value={value} 
     onClick={clickHandler}
   />;
+}
+
+function calculateWinner(squares) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
 }
