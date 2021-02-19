@@ -1,11 +1,14 @@
-export function getStatusMessage({nextPlayer, winner}) {
-  return (winner) 
-    ? `Winner: ${winner}`
-    : getNextPlayerMessage(nextPlayer)
+export function getStatusMessage({ nextPlayer, winner }) {
+  if ((winner || "").toLowerCase() === "draw") {
+    return winner;
+  } else if (winner) {
+    return `Winner: ${winner}`;
+  }
+  return getNextPlayerMessage(nextPlayer);
 }
 
 export function getNextPlayerMessage(nextPlayer) {
-  return `Next player: ${nextPlayer}`
+  return `Next player: ${nextPlayer}`;
 }
 
 export function calculateWinner(squares) {
@@ -17,28 +20,28 @@ export function calculateWinner(squares) {
     [1, 4, 7],
     [2, 5, 8],
     [0, 4, 8],
-    [2, 4, 6],
+    [2, 4, 6]
   ];
 
-  let result
+  let result;
   const hasWinner = lines.some((line) => {
     const [a, b, c] = line;
     result = {
       winner: squares[a],
       line: [a, b, c]
-    }
-    return squares[a] && squares[a] === squares[b] && squares[a] === squares[c]
-  })
+    };
+    return squares[a] && squares[a] === squares[b] && squares[a] === squares[c];
+  });
   if (hasWinner) {
-    return result
+    return result;
   }
-  
-  const hasDraw = squares.every((value) => !!value)
+
+  const hasDraw = squares.every((value) => !!value);
   if (hasDraw) {
     return {
-      winner: 'DRAW',
+      winner: "DRAW",
       line: null
-    }
+    };
   }
 
   return {
