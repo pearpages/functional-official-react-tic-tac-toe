@@ -9,7 +9,7 @@ export function Board({ config: { squares, handleClick, line } }) {
 
   const renderSquareWithValueAndClickHandler = (square) => Square.renderSquare({
     value: squares[square],
-    clickHandler: handleClick(square),
+    clickHandler: squares[square] ? () => undefined : handleClick(square),
     isHighlighted: isHighlighted(square)
   })
 
