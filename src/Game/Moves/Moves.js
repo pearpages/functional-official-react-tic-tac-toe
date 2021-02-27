@@ -19,8 +19,3 @@ Moves.propTypes = {
   history: PropTypes.array.isRequired,
   setMove: PropTypes.func.isRequired
 }
-
-Moves.defaultProps = {
-  history: [],
-  setMove: () => undefined
-}
