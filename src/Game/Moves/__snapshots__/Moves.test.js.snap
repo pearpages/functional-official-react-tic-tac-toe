@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Moves> When Moves html snapshot changes 1`] = `
+<ol
+  class="moves"
+  data-testid="Moves"
+>
+  <li>
+    <button>
+      Go to game start
+    </button>
+  </li>
+  <li>
+    <button>
+      Go to move #1
+    </button>
+  </li>
+  <li>
+    <button>
+      Go to move #2
+    </button>
+  </li>
+  <li>
+    <button>
+      Go to move #3
+    </button>
+  </li>
+</ol>
+`;
