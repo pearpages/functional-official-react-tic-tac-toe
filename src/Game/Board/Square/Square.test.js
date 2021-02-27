@@ -23,6 +23,12 @@ describe("<Square>", () => {
     fireEvent.click(button)
     expect(onClick).toHaveBeenCalled()
   })
+
+  test('When Squares snapshot changes', () => {
+    const value = "My text"
+    const result = render(<Square onClick={() => undefined} value={value}/>)
+    expect(result.container.innerHTML).toMatchSnapshot()
+  })
 })
 
 describe("renderSquare", () => {
