@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { calculateWinner } from './Game.helpers';
 
-const PLAYER1 = 'X';
-const PLAYER2 = 'O';
+import { calculateWinner } from './Game.helpers';
+import { PLAYERS } from './shared';
 
 function getInitialHistory() {
   const squares = Array(9).fill(null);
-  const nextPlayer = PLAYER1;
+  const nextPlayer = PLAYERS.PLAYER1;
   return [{ squares, nextPlayer }];
 }
 
@@ -33,7 +32,8 @@ export function useGame() {
     const copyOfHistory = history.slice(0, currentMove + 1);
     const newBoardStatus = {
       squares: newSquares,
-      nextPlayer: nextPlayer === PLAYER1 ? PLAYER2 : PLAYER1,
+      nextPlayer:
+        nextPlayer === PLAYERS.PLAYER1 ? PLAYERS.PLAYER2 : PLAYERS.PLAYER1,
     };
     setHistory(copyOfHistory.concat(newBoardStatus));
     setMove(undefined);

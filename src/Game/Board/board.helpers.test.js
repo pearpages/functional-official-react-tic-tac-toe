@@ -3,6 +3,9 @@ import {
   adapter,
 } from './board.helpers';
 import { Square } from './Square';
+import { PLAYERS } from '../shared';
+
+const { PLAYER1, PLAYER2 } = PLAYERS;
 
 Square.renderSquare = jest.fn();
 
@@ -11,7 +14,17 @@ const mockFn = () => 'yahoo';
 const config = {
   handleClick: () => mockFn,
   line: [2, 5, 8],
-  squares: [null, null, 'X', null, 'O', 'X', null, 'O', 'X'],
+  squares: [
+    null,
+    null,
+    PLAYER1,
+    null,
+    PLAYER2,
+    PLAYER1,
+    null,
+    PLAYER2,
+    PLAYER1,
+  ],
 };
 
 describe('board.helpers', () => {
@@ -28,7 +41,7 @@ describe('board.helpers', () => {
   describe('adapter', () => {
     it('should give you the right paramaters for the adapter function', () => {
       const result = adapter(config, 2);
-      expect(result.value).toBe('X');
+      expect(result.value).toBe(PLAYER1);
       expect(result.clickHandler).not.toBe(mockFn);
       expect(result.clickHandler()).toBe(undefined);
       expect(result.isHighlighted).toBe(true);
