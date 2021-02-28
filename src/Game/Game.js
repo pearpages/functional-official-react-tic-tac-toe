@@ -9,11 +9,11 @@ import { Status } from './Status';
 export function Game() {
   const {
     squares,
-    handleClick,
+    updateGame,
     nextPlayer,
     history,
     setMove,
-    win: { winner, line },
+    winConfig: { winner, line },
   } = useGame();
 
   return (
@@ -22,7 +22,7 @@ export function Game() {
         <Board
           config={{
             squares,
-            handleClick,
+            handleClick: updateGame,
             line,
           }}
         />
