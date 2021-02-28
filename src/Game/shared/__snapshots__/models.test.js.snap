@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`models When LINES change 1`] = `
+Array [
+  Array [
+    0,
+    1,
+    2,
+  ],
+  Array [
+    3,
+    4,
+    5,
+  ],
+  Array [
+    6,
+    7,
+    8,
+  ],
+  Array [
+    0,
+    3,
+    6,
+  ],
+  Array [
+    1,
+    4,
+    7,
+  ],
+  Array [
+    2,
+    5,
+    8,
+  ],
+  Array [
+    0,
+    4,
+    8,
+  ],
+  Array [
+    2,
+    4,
+    6,
+  ],
+]
+`;
+
+exports[`models When PLAYERS change 1`] = `
+Object {
+  "PLAYER1": "X",
+  "PLAYER2": "O",
+}
+`;
