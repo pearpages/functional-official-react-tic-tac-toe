@@ -13,7 +13,7 @@ export function Square({onClick, value, isHighlighted}) {
 
 Square.HIGHLIGHTED = 'square--highlighted'
 
-Square.renderSquare = ({value, clickHandler, isHighlighted}) => {
+Square.renderSquare = ({value = '', clickHandler = () => undefined, isHighlighted = false}) => {
   return <Square
     value={value}
     onClick={clickHandler}
@@ -22,7 +22,7 @@ Square.renderSquare = ({value, clickHandler, isHighlighted}) => {
 }
 
 Square.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+  value: PropTypes.string,
   isHighlighted: PropTypes.bool
 }
