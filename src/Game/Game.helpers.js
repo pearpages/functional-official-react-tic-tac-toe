@@ -67,7 +67,7 @@ export function getWinnerConfig(squares) {
   return winnerConfig;
 }
 
-export const hasDraw = (squares) => squares.every((value) => !!value);
+export const hasDraw = (squares) => squares.every((value) => value !== null);
 
 export function calculateWinner(squares) {
   const winnerConfig = getWinnerConfig(squares);
