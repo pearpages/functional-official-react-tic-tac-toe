@@ -5,12 +5,16 @@ import { useGame } from './useGame';
 import { Board } from './Board';
 import { Moves } from './Moves';
 import { Status } from './Status';
-import { calculateWinner } from './Game.helpers';
 
 export function Game() {
-  const { squares, handleClick, nextPlayer, history, setMove } = useGame();
-
-  const { winner, line } = calculateWinner(squares);
+  const {
+    squares,
+    handleClick,
+    nextPlayer,
+    history,
+    setMove,
+    win: { winner, line },
+  } = useGame();
 
   return (
     <div className="game">
@@ -18,7 +22,7 @@ export function Game() {
         <Board
           config={{
             squares,
-            handleClick: winner ? () => undefined : handleClick,
+            handleClick,
             line,
           }}
         />
