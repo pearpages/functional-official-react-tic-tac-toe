@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Status> Check when the html rendered changes 1`] = `"<div class=\\"status\\">Next player: X</div>"`;
